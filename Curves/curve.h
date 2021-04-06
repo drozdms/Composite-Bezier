@@ -15,10 +15,10 @@ private:
     boost::optional<QPointF> move_point;
 
 public:
-    Curve(QWidget* parent) : QGLWidget(parent)  {
+    Curve(QWidget* parent) : QGLWidget(parent), scale(1.0)  {
         move_point = boost::none;
     }
-    Curve(int numOfSamples) : numOfSamples(numOfSamples)    {
+    Curve(int numOfSamples) : numOfSamples(numOfSamples), scale(1.0)   {
         move_point = boost::none;
     }
     Curve(Curve& other) : Curve(other.getNumOfSamples()) {}
@@ -36,18 +36,18 @@ public:
 
 protected:
     virtual void update() {}
-    virtual void mouseMoveEvent(QMouseEvent *) override {};
-    virtual void mousePressEvent(QMouseEvent * ) override {};
-    virtual void mouseReleaseEvent(QMouseEvent* ) override {};
+    void mouseMoveEvent(QMouseEvent *) override;
+    void mousePressEvent(QMouseEvent * ) override;
+    void mouseReleaseEvent(QMouseEvent* ) override;
   //  virtual void
 
-//    void resizeGL(int w, int h) override;
+    void resizeGL(int w, int h) override;
 
     void initializeGL() override;
 
-//    void wheelEvent(QWheelEvent*) override;
+    void wheelEvent(QWheelEvent*) override;
 
-//    QPointF screen_to_global(QPointF const & screen_pos) const;
+    QPointF screen_to_global(QPointF const & screen_pos) const;
 };
 
 #endif // CURVE_H

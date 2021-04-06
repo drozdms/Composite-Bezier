@@ -52,19 +52,19 @@ void CompositeCurve::paintGL() {
 
 
 void CompositeCurve::mouseReleaseEvent(QMouseEvent* event) {
-//    Curve::mouseReleaseEvent(event);
-//    if (event->button() == Qt::LeftButton)  {
+    Curve::mouseReleaseEvent(event);
+    if (event->button() == Qt::LeftButton)  {
         for (auto curve : bezierCurves)
             curve->deselect();
-//    }
+    }
 }
 
 
 
 void CompositeCurve::mouseMoveEvent(QMouseEvent *event)    {
 
-//    Curve::mouseMoveEvent(event);
-    QPointF point = event->pos();
+    Curve::mouseMoveEvent(event);
+    QPointF point = screen_to_global(event->pos());
     if (event->buttons() == Qt::LeftButton)  {
         for (BezierCurve* curve : bezierCurves)  {
             QList<ControlPoint*> selected_control_points = curve->getSelectedControlPoints();
@@ -94,10 +94,10 @@ void CompositeCurve::mouseMoveEvent(QMouseEvent *event)    {
 
 void CompositeCurve::mousePressEvent(QMouseEvent *event)   {
 
-//    Curve::mousePressEvent(event);
+    Curve::mousePressEvent(event);
 
-    QPointF point = event->pos();
-//    if (event->button() == Qt::LeftButton)    {
+    QPointF point = screen_to_global(event->pos());
+    if (event->button() == Qt::LeftButton)    {
         QList<BezierCurve*>::iterator it = std::find_if(bezierCurves.begin(), bezierCurves.end(),
                                                   [&point](const BezierCurve* curve){
             ControlPoint* control_point = curve->getControlPoint(point);
@@ -112,9 +112,9 @@ void CompositeCurve::mousePressEvent(QMouseEvent *event)   {
         }
         else
             selectControlPoints(point);
-//    }
+    }
 
-//    event->accept();
+    event->accept();
 
 }
 
