@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "ui_MainWindow.h"
+#include "ui_mainwindow.h"
 #include "Curves/curve.h"
 #include "Curves/compositecurve.h"
 #include "Curves/simplecurve.h"
@@ -21,7 +21,7 @@ public slots:
     void setCubicCurveWidget();
     void setCompCurveWidget();
     void changeNumOfSamples();
-
+    void reset();
 public:
     MainWindow(QWidget *parent = nullptr);
 

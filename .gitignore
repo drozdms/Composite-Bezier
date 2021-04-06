@@ -1,0 +1,14 @@
+# Redundant build folders
+
+debug
+release
+debug/*
+release/*
+
+Makefile
+Makefile.*
+.qmake.*
+
+# Extensions
+
+*.o

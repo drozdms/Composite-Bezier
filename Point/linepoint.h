@@ -49,11 +49,6 @@ public:
     ~LinePoint()    {}
 
 
-
-
-
-
-
 };
 
 

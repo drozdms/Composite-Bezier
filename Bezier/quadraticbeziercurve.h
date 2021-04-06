@@ -11,6 +11,10 @@ private:
 public:
     QuadraticBezierCurve() : BezierCurve(NUM_OF_CONTROL_POINTS) {}
     ~QuadraticBezierCurve() {}
+
+    int getNumOfControlPoints() override  {
+        return NUM_OF_CONTROL_POINTS;
+    }
 };
 
 #endif // QUADRATICBEZIERCURVE_H

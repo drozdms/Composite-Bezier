@@ -12,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(quadCurveButton, SIGNAL(clicked()), this, SLOT(setQuadCurveWidget()));
     connect(cubCurveButton, SIGNAL(clicked()), this, SLOT(setCubicCurveWidget()));
     connect(compCurveButton, SIGNAL(clicked()), this, SLOT(setCompCurveWidget()));
-
+    QShortcut * shortcutReset = new QShortcut(QKeySequence(Qt::Key_Space),this,SLOT(reset()));
+    shortcutReset->setAutoRepeat(false);
     lineEdit->setText("1000");
     lineEdit->editingFinished();
     int x = 2;
@@ -55,3 +56,11 @@ void MainWindow::changeNumOfSamples()   {
     numOfSamples = lineEdit->text().toInt();
     this->widget->setNumOfSamples(numOfSamples);
 }
+
+void MainWindow::reset()    {
+
+    this->widget->~Curve();
+    this->widget = SimpleCurve::CreateQuadraticCurve(numOfSamples);
+    initWidget();
+}
+

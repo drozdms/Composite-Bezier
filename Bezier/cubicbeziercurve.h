@@ -10,7 +10,11 @@ private:
 
 public:
     CubicBezierCurve() : BezierCurve(NUM_OF_CONTROL_POINTS) {}
+    ~CubicBezierCurve() {}
 
+    int getNumOfControlPoints() override  {
+        return NUM_OF_CONTROL_POINTS;
+    }
 
 
 };

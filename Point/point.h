@@ -3,7 +3,6 @@
 
 #include <QColor>
 #include <QtOpenGL>
-#pragma comment( lib, "OpenGL32.lib" )
 
 template <typename T>
 class Point
@@ -86,6 +85,9 @@ public:
 };
 
 template<typename T>
-Point<T>::~Point() {}
+Point<T>::~Point() {
+
+
+}
 
 #endif // POINT_H
