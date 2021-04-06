@@ -4,7 +4,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     setMouseTracking(true);
-  //  setLayout(new QHBoxLayout(this));
+//    setLayout(new QHBoxLayout(this));
     setupUi(this);
     setCompCurveWidget();
     lineEdit->setValidator(new QIntValidator(2,10000,this));
@@ -16,22 +16,21 @@ MainWindow::MainWindow(QWidget *parent)
     shortcutReset->setAutoRepeat(false);
     lineEdit->setText("1000");
     lineEdit->editingFinished();
-    int x = 2;
-    x+=1;
 
 }
 
 
 void MainWindow::initWidget()  {
-    this->widget->setParent(centralWidget());
-    widget->setObjectName(QString::fromUtf8("widget"));
-    widget->setGeometry(QRect(0, 40, 801, 541));
-    this->widget->show();
+    centralwidget->setParent(centralWidget());
+    centralwidget->setObjectName(QString::fromUtf8("widget"));
+    centralwidget->setGeometry(QRect(0, 40, 1920, 1080));
+    centralwidget->show();
+
 }
 
 void MainWindow::setQuadCurveWidget()  {
-    this->widget->~Curve();
-    this->widget = SimpleCurve::CreateQuadraticCurve(numOfSamples);
+    centralwidget->resetCurve();
+    centralwidget = SimpleCurve::CreateQuadraticCurve(numOfSamples);
     initWidget();
 
   //  this->widget->close()
@@ -39,14 +38,14 @@ void MainWindow::setQuadCurveWidget()  {
 }
 
 void MainWindow::setCubicCurveWidget()  {
-    this->widget->~Curve();
-    this->widget = SimpleCurve::CreateCubicCurve(numOfSamples);
+    centralwidget->resetCurve();
+    centralwidget = SimpleCurve::CreateCubicCurve(numOfSamples);
     initWidget();
 }
 
 void MainWindow::setCompCurveWidget()    {
-    this->widget->~Curve();
-    this->widget = new CompositeCurve(numOfSamples);
+    centralwidget->resetCurve();
+    centralwidget = new CompositeCurve(numOfSamples);
     initWidget();
 }
 
@@ -54,13 +53,14 @@ void MainWindow::setCompCurveWidget()    {
 void MainWindow::changeNumOfSamples()   {
 
     numOfSamples = lineEdit->text().toInt();
-    this->widget->setNumOfSamples(numOfSamples);
+    centralwidget->setNumOfSamples(numOfSamples);
 }
 
 void MainWindow::reset()    {
 
-    this->widget->~Curve();
-    this->widget = SimpleCurve::CreateQuadraticCurve(numOfSamples);
+    centralwidget->resetCurve();
+    centralwidget = SimpleCurve::CreateQuadraticCurve(numOfSamples);
     initWidget();
 }
+
 

@@ -15,6 +15,7 @@ private:
 public:
     CompositeCurve(int numOfSamples);
 
+    void resetCurve() override;
 
     void update() override;
 
@@ -38,6 +39,8 @@ private:
     void selectControlPoints(QPointF& point);
 
     void addControlPoint(QPointF& point);
+
+    void resizeGL(int w, int h) override;
 
 };
 

@@ -10,9 +10,7 @@ class Curve : public QGLWidget
 private:
 
     int numOfSamples;
-    qreal scale;
-    QPointF center_;
-    boost::optional<QPointF> move_point;
+
 
 public:
     Curve(QWidget* parent) : QGLWidget(parent), scale(1.0)  {
@@ -30,24 +28,34 @@ public:
     void setNumOfSamples(int numOfSamples) {
         this->numOfSamples = numOfSamples;
         update();
-        updateGL();
     }
+
+    void resizeGL(int w, int h) override;
+
+    virtual void resetCurve() {};
 
 
 protected:
     virtual void update() {}
+
     void mouseMoveEvent(QMouseEvent *) override;
     void mousePressEvent(QMouseEvent * ) override;
     void mouseReleaseEvent(QMouseEvent* ) override;
   //  virtual void
 
-    void resizeGL(int w, int h) override;
+
 
     void initializeGL() override;
 
     void wheelEvent(QWheelEvent*) override;
 
     QPointF screen_to_global(QPointF const & screen_pos) const;
+
+
+protected:
+    qreal scale;
+    QPointF center_;
+    boost::optional<QPointF> move_point;
 };
 
 #endif // CURVE_H

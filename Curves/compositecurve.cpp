@@ -118,12 +118,15 @@ void CompositeCurve::mousePressEvent(QMouseEvent *event)   {
 
 }
 
-CompositeCurve::~CompositeCurve() {
-
+void CompositeCurve::resetCurve()    {
     for (int i = 0; i<bezierCurves.size(); ++i)
         delete bezierCurves[i];
     for (int i = 0; i<lines.size(); ++i)
         delete lines[i];
+}
+
+CompositeCurve::~CompositeCurve() {
+    resetCurve();
 }
 
 
@@ -179,4 +182,22 @@ void CompositeCurve::addControlPoint(QPointF& point)    {
         lines.append(new QLineF(previous->getX(), previous->getY(), second->getX(), second->getY()));
         bezierCurves.append(newCurve);
     }
+}
+
+
+void CompositeCurve::resizeGL(int w, int h)
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    QPointF size = (scale / 2) * QPointF(w, h);
+
+    QPointF left_bottom = center_ + (-size);
+    QPointF right_top   = center_ + size;
+
+
+    glOrtho(left_bottom.x(), right_top.x(), left_bottom.y(), right_top.y(), -1.0, 1.0);
+
+//     glOrtho(0, w, h, 0, .0, 1.0);
+    glViewport(0, 0, w, h);
+
 }

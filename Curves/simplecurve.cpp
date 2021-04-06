@@ -16,18 +16,20 @@ void SimpleCurve::paintGL() {
     bezierCurve->drawCurve();
 }
 
+void SimpleCurve::resetCurve()    {
+    delete bezierCurve;
+}
+
 
 SimpleCurve::~SimpleCurve()   {
-    bezierCurve->~BezierCurve();
-    delete bezierCurve;
-
+    resetCurve();
 }
 
 
 void SimpleCurve::mousePressEvent(QMouseEvent *event)   {
 
     Curve::mousePressEvent(event);
-    QPointF point = event->pos();
+    QPointF point = screen_to_global(event->pos());
     if (event->button() == Qt::LeftButton)  {
     ControlPoint* controlPoint = bezierCurve->getControlPoint(point);
         if (controlPoint == nullptr)    {
@@ -53,7 +55,7 @@ void SimpleCurve::mouseMoveEvent(QMouseEvent *event)    {
     Curve::mouseMoveEvent(event);
 
     if (event->buttons() == Qt::LeftButton)  {
-        bezierCurve->dragPoint(event->pos());
+        bezierCurve->dragPoint(screen_to_global(event->pos()));
     }   else    {
         ControlPoint* point = bezierCurve->getControlPoint(event->pos());
         if (point != nullptr)

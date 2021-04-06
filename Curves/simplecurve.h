@@ -16,6 +16,7 @@ private:
 public:
     SimpleCurve(QWidget* parent) : Curve(parent) {}
 
+    virtual void resetCurve() override;
 
     void paintGL() override;
 
