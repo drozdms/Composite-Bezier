@@ -93,13 +93,13 @@ void Curve::mouseMoveEvent(QMouseEvent *event) {
 
             center_ = *move_point + scale * diff;
 
-            QTextStream cout(stdout);
-            cout <<"event pos:" <<event->pos().x() << ' ' << event->pos().y() <<
-                   "\nglobpos:" << pos.x() << ' ' << pos.y() <<
-                   "\nmovepoint:"<<  move_point->x() << ' ' << move_point->y() <<
-                    "\nsize:"<< size().width() << ' ' << size().height() <<
+//            QTextStream cout(stdout);
+//            cout <<"event pos:" <<event->pos().x() << ' ' << event->pos().y() <<
+//                   "\nglobpos:" << pos.x() << ' ' << pos.y() <<
+//                   "\nmovepoint:"<<  move_point->x() << ' ' << move_point->y() <<
+//                    "\nsize:"<< size().width() << ' ' << size().height() <<
 
-                   "\ncenterpoint:"<<  center_.x() << ' ' << center_.y() << "\n\n";
+//                   "\ncenterpoint:"<<  center_.x() << ' ' << center_.y() << "\n\n";
 
 
 

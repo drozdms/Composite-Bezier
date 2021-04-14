@@ -3,8 +3,14 @@ QT += opengl
 QT += gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++17
 CONFIG += QtGui
+
+QMAKE_CXXFLAGS = -g -std=c++11 -Wall
+
+macx {
+    QMAKE_CXXFLAGS += -stdlib=libc++
+    QMAKE_LFLAGS += -lc++
+}
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -36,7 +42,8 @@ HEADERS += \
     Point/linepoint.h \
     Point/point.h \
     Utils/Utils.h \
-    mainwindow.h
+    mainwindow.h \
+    ui_mainwindow.h \
 
 FORMS += \
     mainwindow.ui
